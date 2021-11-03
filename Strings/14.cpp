@@ -29,9 +29,7 @@ int main()
     ++count;
 
     for (int i = 0; i < count; ++i) {
-
         for (int j = 0; j < count-i-1; ++j) {
-
             if (masWords[j].length() < masWords[j + 1].length()) {
                 swap(masWords[j], masWords[j + 1]);
             }
