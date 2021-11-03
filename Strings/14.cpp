@@ -5,12 +5,12 @@ using namespace std;
 
 int main()
 {
-	string inputString;
+    string inputString;
     string word;
     string masWords[255];
 
     cout << "Input sentence:" << endl;
-	getline(cin, inputString);
+    getline(cin, inputString);
     cout << endl;
       
     int count = 0;
