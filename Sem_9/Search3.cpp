@@ -4,16 +4,7 @@ using namespace std;
 int main()
 {
     const int n = 3;
-    int lens[n] = { 3, 8, 3 };
-
-    //Сортировка массива длин по убыванию
-    for (int i = 0; i < n; ++i) {
-        for (int j = 0; j < n - i - 1; ++j) {
-            if (lens[j] < lens[j + 1]) {
-                swap(lens[j], lens[j + 1]);
-            }
-        }
-    }
+    int lens[n] = { 8, 3, 3 };
 
     int k;
     cin >> k;
@@ -28,22 +19,22 @@ int main()
         return 0;
     }
     
-    int Max1 = sum_lens / k;
-    int min = max(lens[n - 1] / k, 1);
+    int Max = sum_lens / k;
+    int Min = 1;
 
     int range[255] = {};
 
-    for (int i = 0; i < Max1 - min + 1; ++i) {
-        range[i] = min + i;
+    for (int i = 0; i < Max - Min + 1; ++i) {
+        range[i] = Min + i;
     }
 
-    Max1 = Max1 - min;
-    min = 0;
+    int right = Max - Min;
+    int left = 0;
 
     int check_k = 0;
-    while (min < Max1)
+    while (left < right)
     {
-        int middle = (Max1 + min) / 2;
+        int middle = (right + left) / 2;
 
         check_k = 0;
 
@@ -52,20 +43,15 @@ int main()
         }
 
         if (k > check_k)
-            Max1 = middle;
+            right = middle - 1;
 
         if (k == check_k)
-            min = middle;
+            left = middle;
 
         if (k < check_k)
-            min = middle + 1;
-
-        if (k == check_k && Max1-min==1)
-            Max1 = middle;
-
-        cout << check_k << endl;
+            left = middle + 1;
     }
 
-    cout << range[Max1] << endl;
+    cout << range[right] << endl;
     return 0;
 }
