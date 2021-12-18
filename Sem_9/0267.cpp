@@ -16,7 +16,7 @@ int main()
     v1 = 1. / min1;
     v2 = 1. / max1;
   
-    if (n > min1) {
+    if (n > 1) {
         k = min1 + (n - 1) / (v1 + v2) + 1;
         cout << (int)k << endl;
     }
