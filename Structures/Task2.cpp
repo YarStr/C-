@@ -17,15 +17,12 @@ int main()
     mas[1] = { 18, "Mary", "Tea" };
     mas[2] = { 19, "Alice", "Vodka" };
 
-    int indicator = 0;
     int maxAge = mas[0].age;
-    
     for (int i = 0; i < 3; ++i)
     {
         if (mas[i].age > maxAge)
         {
             maxAge = mas[i].age;
-            indicator = i;
         }
     };
     
