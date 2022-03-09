@@ -31,8 +31,8 @@ public:
 
 class Player
 {
+  
 public:
-
     Player(string name, int numberOfDices):
         name(name),
         numberOfDices(numberOfDices)
@@ -107,7 +107,11 @@ public:
     }
 };
 
+
+
 int main()
 {
     return 0;
 }
+
+
