@@ -2,6 +2,7 @@
 #include <string>
 using namespace std;
 
+//Класс, описывающий игральную кость
 class Dice 
 {
   
@@ -18,9 +19,11 @@ public:
     {
     }
     
+    //Значения на краях игральной кости. Для упрощения логики названы "левым" и "правым" 
     int leftValue;
     int rightValue;
     
+    //Метод, устанавливающий, равно ли какое-нибудь значение на кости заданному
     bool IsEquals(int value)
     {
         if (this->leftValue == value or this->rightValue == value)
