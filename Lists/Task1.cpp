@@ -16,19 +16,19 @@ int main()
         return 1;
     }    
 
-    list<int> values;
+    list<float> values;
     
     while (!inputFile.eof())
     {
-        int temp;
+        float temp;
         inputFile >> temp;
         values.push_back(temp);
     }
 
     values.sort();
 
-    int sumOfValues = 0;
-    for (int i : values)
+    float sumOfValues = 0;
+    for (float i : values)
     {
         sumOfValues += i;
     }
@@ -38,7 +38,7 @@ int main()
     cout << "Среднее значение: " << averageValue << endl;
 
     cout << "Массив: ";
-    for (int i : values)
+    for (float i : values)
     {
         cout << i << " ";
     }
