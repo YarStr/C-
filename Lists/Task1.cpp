@@ -33,7 +33,7 @@ int main()
         sumOfValues += i;
     }
 
-    float averageValue = (float)sumOfValues / values.size();
+    float averageValue = sumOfValues / values.size();
 
     cout << "Среднее значение: " << averageValue << endl;
 
