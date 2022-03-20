@@ -79,6 +79,7 @@ private:
     Node* pTail; 
 };
 
-int main() {
+int main()
+{
     return 0;
 }
