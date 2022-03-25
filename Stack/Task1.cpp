@@ -67,14 +67,14 @@ int main() {
     			output += Stack.top();
                 Stack.pop();
             }
-            
     	else
-        {
-    		while (priority(symb) <= priority(Stack.top()))
-            {
-    			output += Stack.top();
-                Stack.pop();
-            }
+        {   
+            if (!Stack.empty())
+        		while (priority(symb) <= priority(Stack.top()))
+                {
+        			output += Stack.top();
+                    Stack.pop();
+                }
     		Stack.push(symb);
     	}
     }
