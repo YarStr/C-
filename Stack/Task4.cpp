@@ -37,6 +37,40 @@ void doPermutation(vector<int>& vec, int n)
     } 
 }
 
+void doGame(vector<int>& vec)
+{
+    stack<int> palm;
+        
+    auto it = vec.begin();
+    int number = *it;
+    
+    for (int i = 0; i < 3; ++i)
+    {
+        palm.push(*(it + 1));
+        vec.erase(it + 1);
+    }
+    
+    it = iteratorOfMax(vec, number) + 1;
+
+    for (int i = 0; i < 3; ++i)
+    { 
+        vec.insert(it, palm.top());
+        palm.pop();
+    }
+
+    for (int i : vec)
+        cout << i << " ";
+    cout << endl;
+
+    auto it_end = vec.end() - 1;
+    for (int i = 0; i < distance(it, vec.end()) - 3; ++i)
+    {
+        vec.insert(vec.begin(), *it_end);
+        vec.erase(it_end + 1); 
+        it_end = vec.end() - 1;
+    }
+}
+
 int main() {
     cout << "• Введите n: ";
     int n;
@@ -53,41 +87,11 @@ int main() {
     cout << "• Введите m: ";
     int m;
     cin >> m;
-    
-    stack<int> palm;
+
     for (int j = 0; j < m; ++j)
     {
-        cout << "Положение после " << j+1 << " прохода алгоритма: ";
-        
-        auto it = permutation.begin();
-        int number = *it;
-        
-        for (int i = 0; i < 3; ++i)
-        {
-            palm.push(*(it + 1));
-            permutation.erase(it + 1);
-        }
-        
-        it = iteratorOfMax(permutation, number) + 1;
-    
-        for (int i = 0; i < 3; ++i)
-        { 
-            permutation.insert(it, palm.top());
-            palm.pop();
-        }
-    
-        for (int i : permutation)
-            cout << i << " ";
-        cout << endl;
-
-        auto it_end = permutation.end() - 1;
-        for (int i = 0; i < distance(it, permutation.end()) - 3; ++i)
-        {
-            permutation.insert(permutation.begin(), *it_end);
-            permutation.erase(it_end + 1); 
-            it_end = permutation.end() - 1;
-        }
+        cout << "Положение после " << j + 1 << " прохода алгоритма: ";
+        doGame(permutation);
     }
-    
     return 0;
 }
