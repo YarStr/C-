@@ -14,6 +14,8 @@ public:
     verStack()
     {
         pTail = nullptr;
+        versions = new Node*[30];
+        currentVersion = 0;
     };
 
     ~verStack()
@@ -25,8 +27,30 @@ public:
             pTemp = pTemp->pNext;
             delete pDeleteNode;
         }
+        delete[] versions;
     };
 
+    //Сложность - O(n), где n = currentVersion
+    void addVersion()
+    {
+        if (currentVersion == 29)
+        {   
+            Forget();
+            currentVersion = -1;
+        }
+        
+        ++currentVersion;
+        versions[currentVersion] = pTail;
+    }
+
+    //Сложность - O(n), где n = currentVersion
+    void Forget()
+    {
+        versions[0] = versions[currentVersion]; 
+        currentVersion = 0;
+    }
+
+    //Сложность сводится к сложности addVersion, т.е. O(n), где n = currentVersion
     void push(int data)
     {
         Node* pNode = new Node();
@@ -36,78 +60,54 @@ public:
         {
             pTail = pNode;
             pTail->pNext = nullptr;
-            versions.push_back(pTail);
+            addVersion();
+            --currentVersion;
             return;
         }
 
         pNode->pNext = pTail;
         pTail = pNode;
 
-        versions.push_back(pTail);
+        addVersion();
     };
 
-    void pop()
+    //Сложность сводится к сложности addVersion, т.е. O(n), где n = currentVersion
+    void pop() 
     {
         if (pTail == nullptr)
             return;
 
         pTail = pTail->pNext;
-        
-        versions.push_back(pTail);
+        addVersion();
     };
 
+    //Сложность - O(1)
     int back()
     {
         return pTail->data;
     };
 
+    //Сложность - O(n+m), где n = currentVersion, m = ver
     bool Rollback(int ver)
     {
-        if (ver >= versions.size() || ver < 0)
+        if (ver > currentVersion || ver < 0)
         {
             cout << "ERROR! Incorrect version!" << endl;
             return false;
         }
         pTail = versions[ver];
-        versions.push_back(pTail);
+        addVersion();
         
         return true;
-    }
-
-    void Forget()
-    {
-        Node* pTemp = versions[versions.size() - 1];
-        //for (int i = 0; i < versions.size(); ++i)
-        //   delete versions[i];
-        versions.clear();
-        versions.push_back(pTemp);
     }
     
 private:
     Node* pTail; 
-    vector<Node*> versions;
+    Node** versions;
+    int currentVersion; 
 };
 
 int main()
 {
-    /*
-    verStack Test;
-    Test.push(1);
-    Test.push(2);
-    Test.push(3);
-    Test.pop();
-    Test.pop();
-    Test.push(1);
-
-    Test.Rollback(2);
-    Test.push(1);
-    
-    Test.Rollback(6);
-    
-    cout << Test.back() << endl;
-    Test.Forget();
-    cout << Test.back() << endl;
-    Test.Rollback(1);
-    */
     return 0;
 }
