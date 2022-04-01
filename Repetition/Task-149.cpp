@@ -21,6 +21,7 @@ int main() {
         fin >> temp;
         numbers.push_back(temp);
     }
+    fin.close();
     
     ofstream fout("output.txt");
     for (int i = n - 1; i >= 0; --i)
