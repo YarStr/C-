@@ -1,14 +1,7 @@
 #include <vector>
-#include <iostream>
-#include <string>
 #include <fstream>
-#include <map>
-#include <cstdlib>
-#include <iomanip>
-#include <algorithm>
 
 using namespace std;
-
 
 int main() {
     ifstream fin("input.txt");
